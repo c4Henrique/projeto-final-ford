@@ -1,0 +1,46 @@
+@use "../../../_variables.scss" as vars;
+
+// .login-form-container {
+//   padding: 32px;
+//   border-radius: 16px;
+
+//   .login-form-title {
+//     font-family: vars.$font-family-secondary;
+//     color: vars.$text-higlight;
+//     font-weight: 300;
+//   }
+// }
+
+.custom-card {
+  width: 460px;
+  padding: 32px;
+  border-radius: 16px;
+
+  .custom-card-body {
+    h4 {
+      font-family: vars.$font-family-secondary;
+      color: vars.$text-highlight;
+      font-weight: 300;
+      font-stretch: condensed;
+    }
+
+    form {
+      .main-button {
+        background-color: #00095B;
+      }
+
+      .secondary-button {
+        border-color: #00095B;
+      }
+
+      .icon-button {
+        background-color: none;
+        border-color: none;
+      }
+
+      a {
+        color: rgb(0, 0, 0, 0.8);
+      }
+    }
+  }
+}
