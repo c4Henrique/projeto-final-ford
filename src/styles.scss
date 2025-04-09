@@ -1,10 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
-$main-font: 'Roboto';
-$secondary-font: 'Roboto Condensed';
-
-$bg: #F4F4F4;
+@use "./_variables.scss" as vars;
 
 * {
   padding: 0;
@@ -13,9 +7,15 @@ $bg: #F4F4F4;
 }
 
 html, body {
-  font-family: $main-font;
-  background-color: $bg;
-  background-image: url("/img/background-01.png");
+  font-family: vars.$font-family-base;
+  background-color: vars.$bg;
+  height: 100vh;
+  background-image: url("/img/background-02.png") ;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
+}
+
+.main-button {
+  background-color: #00095B;
 }
