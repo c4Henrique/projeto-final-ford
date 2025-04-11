@@ -8,5 +8,5 @@ import { LoginFormComponent } from '../components/login-form/login-form.componen
   styleUrl: './auth.component.scss'
 })
 export class AuthComponent {
-
+  
 }
