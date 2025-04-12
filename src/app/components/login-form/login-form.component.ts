@@ -1,6 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../service/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -10,6 +11,7 @@ import { AuthService } from '../../service/auth.service';
 })
 export class LoginFormComponent {
   private authService = inject(AuthService)
+  private router = inject(Router)
 
   loginForm = new FormGroup({
     username: new FormControl(""),
@@ -30,10 +32,11 @@ export class LoginFormComponent {
 
     this.authService.auth(username, password).subscribe({
       next: () => {
-        console.log("Sucesso")
+        this.errorMessage = signal("")
+        this.router.navigate(["/home"])
       },
-      error: () => {
-        console.log("Erro")
+      error: (err) => {
+        if(err.status === 404) this.errorMessage = signal("Os dados de usuário ou senha são inválidos!")
       }
     })
   }

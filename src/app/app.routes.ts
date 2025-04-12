@@ -7,5 +7,12 @@ export const routes: Routes = [
     loadComponent: () => {
       return import("./auth/auth.component").then((m) => m.AuthComponent)
     }
-  }
+  },
+  {
+    path: 'home',
+    pathMatch: 'full',
+    loadComponent: () => {
+      return import("./home/home.component").then((m) => m.HomeComponent)
+    }
+  },
 ];
