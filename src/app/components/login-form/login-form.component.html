@@ -2,16 +2,18 @@
   <div class="custom-card-body card-body">
     <h4 class="card-title text-center mb-4">ENTRAR</h4>
 
-    <form action="/" method="post">
+    <form [formGroup]="loginForm" (ngSubmit)="login()" action="/" method="post">
       <div class="form-floating mb-3">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <input formControlName="username" type="text" class="form-control" id="floatingInput" placeholder="username" required>
         <label for="floatingInput">Username</label>
       </div>
 
       <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="floatingInput" placeholder="password">
+        <input formControlName="password" type="password" class="form-control" id="floatingInput" placeholder="password" required>
         <label for="floatingInput">Password</label>
       </div>
+
+      <p class="small text-danger">{{ errorMessage() }}</p>
 
       <div class="mb-3 text-end">
         <a href="#" class="small forgot-password">Esqueceu a senha?</a>
