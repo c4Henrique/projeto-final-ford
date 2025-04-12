@@ -2,7 +2,7 @@
   <div class="custom-card-body card-body">
     <h4 class="card-title text-center mb-4">ENTRAR</h4>
 
-    <form [formGroup]="loginForm" (ngSubmit)="login()" action="/" method="post">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()" action="/" method="post">
       <div class="form-floating mb-3">
         <input formControlName="username" type="text" class="form-control" id="usernameInput" placeholder="username" required>
         <label for="usernameInput">Username</label>

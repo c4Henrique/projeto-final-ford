@@ -19,7 +19,8 @@ export class LoginFormComponent {
   authorized = signal(false)
   errorMessage = signal("")
 
-  login() {
+
+  onSubmitLoginForm() {
     const { username, password } = this.loginForm.value
 
     if(!this.loginForm.valid || !username || !password) {
@@ -27,6 +28,13 @@ export class LoginFormComponent {
       return
     }
 
-    this.authService.auth(username, password)
+    this.authService.auth(username, password).subscribe({
+      next: () => {
+        console.log("Sucesso")
+      },
+      error: () => {
+        console.log("Erro")
+      }
+    })
   }
 }
