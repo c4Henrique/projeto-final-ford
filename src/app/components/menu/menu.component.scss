@@ -1,0 +1,12 @@
+aside {
+    width: 100px;
+}
+
+.menu-item {
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    cursor: pointer;
+    transform: scale(1.15);
+}

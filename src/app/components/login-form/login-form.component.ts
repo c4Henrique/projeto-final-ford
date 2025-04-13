@@ -37,6 +37,8 @@ export class LoginFormComponent {
       },
       error: (err) => {
         if(err.status === 404) this.errorMessage = signal("Os dados de usuário ou senha são inválidos!")
+        if(err.status === 500) this.errorMessage = signal("Erro interno. Tente novamente mais tarde!")
+        this.errorMessage = signal("Erro interno. Tente novamente mais tarde!")
       }
     })
   }
