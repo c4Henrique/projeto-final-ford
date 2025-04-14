@@ -36,8 +36,11 @@ export class LoginFormComponent {
         this.router.navigate(["/home"])
       },
       error: (err) => {
-        if(err.status === 404) this.errorMessage = signal("Os dados de usuário ou senha são inválidos!")
-        if(err.status === 500) this.errorMessage = signal("Erro interno. Tente novamente mais tarde!")
+        if(err.status === 401) {
+          this.errorMessage = signal("Os dados de usuário ou senha são inválidos!")
+          return
+        }
+
         this.errorMessage = signal("Erro interno. Tente novamente mais tarde!")
       }
     })
