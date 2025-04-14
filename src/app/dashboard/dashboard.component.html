@@ -1,1 +1,59 @@
-<p>dashboard works!</p>
+<header class="d-flex justify-content-between p-4">
+    <div><img src="/svg/burger.svg" alt=""></div>
+    <h1>DEVSUZARTE</h1>
+    <div><img src="https://prodb2cuicontentdelivery-d0bbevfjaxfmedda.z01.azurefd.net/b2cui/assets/images/ford-logo.svg" alt=""></div>
+</header>
+<main class="p-4">
+    <section class="custom-cards row g-4">
+        <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card shadow-sm w-100 h-100 p-3">
+                <div class="custom-card-body card-body d-flex flex-column">
+                    <h2 class="card-title">Veículos</h2>
+                    <h3 class="card-text">
+                        <select class="form-select mt-4" name="" id="">
+                            <option value="">Mustang</option>
+                            <option value="">Ranger</option>
+                            <option value="">Territory</option>
+                            <option value="">Bronco Sport</option>
+                        </select>
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <app-card class="col-12 col-sm-6 col-lg-3"/>
+        <app-card class="col-12 col-sm-6 col-lg-3"/>
+        <app-card class="col-12 col-sm-6 col-lg-3"/>
+    </section>
+    <section class="d-flex mt-5 w-100 align-items-center">
+        <div class="w-100"><img class="w-100" src="http://localhost:3001/mustang.png" alt=""></div>
+        <div class="shadow p-5 rounded-4 w-50 d-flex flex-column align-items-center">
+            <div class="d-flex">
+                <h3 class="mb-5"><strong>VIN JJSHJDSAFGSDAJFGSDAJG</strong></h3>
+            </div>
+            <table class="w-100 d-flex justify-content-around">
+                <tbody>
+                    <tr>
+                        <th class="text-start">ODÔMETRO</th>
+                        <td class="text-end">50.000 Km</td>
+                    </tr>
+                    <tr>
+                        <th class="text-start">COMBUSTÍVEL</th>
+                        <td class="text-end">90%</td>
+                    </tr>
+                    <tr>
+                        <th class="text-start">STATUS</th>
+                        <td class="text-end">ON</td>
+                    </tr>
+                    <tr>
+                        <th class="text-start">LAT</th>
+                        <td class="text-end">-12.2322</td>
+                    </tr>
+                    <tr>
+                        <th class="text-start">LONG</th>
+                        <td class="text-end">-35.3214</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
