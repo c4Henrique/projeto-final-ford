@@ -41,23 +41,23 @@
                 <tbody class="w-100 justify-content-between">
                     <tr>
                         <th class="text-start fs-3">ODÔMETRO</th>
-                        <td class="text-end fs-3">50.000Km</td>
+                        <td class="text-end fs-3">{{ vinInfos?.odometro }}Km</td>
                     </tr>
                     <tr>
                         <th class="text-start fs-3">COMBUSTÍVEL</th>
-                        <td class="text-end fs-3">90%</td>
+                        <td class="text-end fs-3">{{ vinInfos?.nivelCombustivel }}%</td>
                     </tr>
                     <tr>
                         <th class="text-start fs-3">STATUS</th>
-                        <td class="text-end fs-3">ON</td>
+                        <td class="text-end fs-3">{{ vinInfos?.status }}</td>
                     </tr>
                     <tr>
                         <th class="text-start fs-3">LAT</th>
-                        <td class="text-end fs-3">-12.2322</td>
+                        <td class="text-end fs-3">{{ vinInfos?.lat }}</td>
                     </tr>
                     <tr>
                         <th class="text-start fs-3">LONG</th>
-                        <td class="text-end fs-3">-35.3214</td>
+                        <td class="text-end fs-3">{{ vinInfos?.long }}</td>
                     </tr>
                 </tbody>
             </table>
