@@ -1,13 +1,19 @@
-<aside class="bg-white shadow position-fixed h-100 p-3 rounded-end-4 text-center d-flex flex-column align-items-center">
-    <nav>
-        <div class=""><img class="w-100 h-100" src="https://prodb2cuicontentdelivery-d0bbevfjaxfmedda.z01.azurefd.net/b2cui/assets/images/ford-logo.svg" alt=""></div>
+<button class="btn btn-white position-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+    <img src="/svg/burger.svg" alt="">
+</button>
+  
+<div class="offcanvas offcanvas-start p-2" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width: 200px;">
+    <div class="offcanvas-header d-flex w-100 justify-content-center align-items-center">
+      <div class="w-75"><img class="w-100" src="https://prodb2cuicontentdelivery-d0bbevfjaxfmedda.z01.azurefd.net/b2cui/assets/images/ford-logo.svg" alt=""></div>
+    </div>
+    <div class="offcanvas-body">
         <ul class="mt-5 p-0 d-flex flex-column align-items-center">
-            <div class="menu-item w-50 mb-4 d-flex align-items-center">
-                <img class=" w-100 h-100" src="/svg/home.svg" alt="">
+            <div class="menu-item w-25 mb-4 d-flex align-items-center">
+                <a href="/home"><img class="w-100 h-100" src="/svg/home.svg" alt=""></a>
             </div>
-            <div class="menu-item w-50 mb-4 d-flex align-items-center">
-                <img class="w-100 h-100" src="/svg/dashboard.svg" alt="">
+            <div class="menu-item w-25 mb-4 d-flex align-items-center">
+                <a href="/dashboard"><img class="w-100 h-100" src="/svg/dashboard.svg" alt=""></a>
             </div>
         </ul>
-    </nav>
-</aside>
+    </div>
+</div>

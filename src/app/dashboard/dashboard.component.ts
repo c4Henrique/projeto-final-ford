@@ -3,10 +3,11 @@ import { CardComponent } from '../components/card/card.component';
 import { FormsModule } from '@angular/forms';
 import { DashboardService } from '../service/dashboard.service';
 import { Vehicle, VinInfos } from '../model/dashboard';
+import { MenuComponent } from '../components/menu/menu.component';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CardComponent, FormsModule],
+  imports: [CardComponent, FormsModule, MenuComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
