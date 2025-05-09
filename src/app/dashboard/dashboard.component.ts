@@ -30,10 +30,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // if(!sessionStorage.getItem("user-name")) {
-    //   this.router.navigate([""])
-    // }
-
     this.dashboardService.getVehicles()
       .subscribe(
         (vehicles) => {
@@ -60,6 +56,12 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         (vinInfos) => {
           this.vinInfos = vinInfos
+
+          const selectedVehicle = this.vehicles.find(vehicle => vehicle.vin === this.vin)
+          if(selectedVehicle) {
+            this.selectedVehicle = selectedVehicle
+            this.vin = selectedVehicle.vin
+          }
         }
       )
 
@@ -70,12 +72,16 @@ export class DashboardComponent implements OnInit {
     const id = Number((event.target as HTMLSelectElement).value)
     const selectedVehicle = this.vehicles.find(vehicle => vehicle.id === id)
     
-    if(selectedVehicle) this.selectedVehicle = selectedVehicle
+    if(selectedVehicle) {
+      this.selectedVehicle = selectedVehicle
+      this.vin = selectedVehicle.vin
+    }
 
     this.dashboardService.getVinInfos(this.selectedVehicle.vin)
       .subscribe(
         (vinInfos) => {
           this.vinInfos = vinInfos
+          
         }
       )
   }

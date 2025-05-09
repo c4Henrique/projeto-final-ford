@@ -7,14 +7,8 @@ import { Router } from '@angular/router';
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.scss'
 })
-export class WelcomeComponent implements OnInit {
+export class WelcomeComponent {
   private router = inject(Router)
-
-  ngOnInit(): void {
-    // if(!sessionStorage.getItem("user-name")) {
-    //   this.router.navigate([""])
-    // }
-  }
 
   goToDashboard() {
     this.router.navigate(["/dashboard"])
