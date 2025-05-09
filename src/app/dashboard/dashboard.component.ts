@@ -30,9 +30,9 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(!sessionStorage.getItem("user-name")) {
-      this.router.navigate([""])
-    }
+    // if(!sessionStorage.getItem("user-name")) {
+    //   this.router.navigate([""])
+    // }
 
     this.dashboardService.getVehicles()
       .subscribe(

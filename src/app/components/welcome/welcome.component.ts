@@ -11,9 +11,9 @@ export class WelcomeComponent implements OnInit {
   private router = inject(Router)
 
   ngOnInit(): void {
-    if(!sessionStorage.getItem("user-name")) {
-      this.router.navigate([""])
-    }
+    // if(!sessionStorage.getItem("user-name")) {
+    //   this.router.navigate([""])
+    // }
   }
 
   goToDashboard() {
