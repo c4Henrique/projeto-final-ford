@@ -1,7 +1,9 @@
 <div class="box-shadow d-flex flex-column bg-white p-4 rounded-4 w-50">
     <div class="d-flex justify-content-between">
         <div class="logo-logout"><img class="w-100 h-100" src="https://prodb2cuicontentdelivery-d0bbevfjaxfmedda.z01.azurefd.net/b2cui/assets/images/ford-logo.svg" alt=""></div>
-        <div class="logo-logout"><img class="w-100 h-100" src="/svg/logout.svg" alt=""></div>
+        <div class="logo-logout">
+            <img (click)="logOut()" class="w-100 h-100" src="/svg/logout.svg" alt="">
+        </div>
     </div>
     <hr>
     <div>
@@ -11,5 +13,5 @@
     <div>
 
     </div>
-    <button class="btn btn-primary mt-5">Dashboard</button>
+    <button class="btn btn-primary mt-5" (click)="goToDashboard()">Dashboard</button>
 </div>

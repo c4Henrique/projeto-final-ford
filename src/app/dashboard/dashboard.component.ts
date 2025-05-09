@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { DashboardService } from '../service/dashboard.service';
 import { Vehicle, VinInfos } from '../model/dashboard';
 import { MenuComponent } from '../components/menu/menu.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -22,11 +23,17 @@ export class DashboardComponent implements OnInit {
 
   dashboardService = inject(DashboardService)
 
+  router = inject(Router)
+
   editVin() {
     this.isEditingVin.set(!this.isEditingVin());
   }
 
   ngOnInit(): void {
+    if(!sessionStorage.getItem("user-name")) {
+      this.router.navigate([""])
+    }
+
     this.dashboardService.getVehicles()
       .subscribe(
         (vehicles) => {
