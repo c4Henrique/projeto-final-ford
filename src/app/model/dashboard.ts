@@ -1,4 +1,4 @@
-export type VinInfos = {
+export interface VinInfos {
     id: number,
     odometro: number,
     nivelCombustivel: number,
@@ -7,11 +7,12 @@ export type VinInfos = {
     long: number
 }
 
-export type Vehicle = {
+export interface Vehicle {
     id: number,
     vehicle: string,
     volumetotal: number,
     connected: number,
     softwareUpdates: number,
+    vin: string,
     img: string
 }

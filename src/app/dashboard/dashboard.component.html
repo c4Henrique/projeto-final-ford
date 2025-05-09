@@ -10,19 +10,20 @@
                 <div class="custom-card-body card-body d-flex flex-column">
                     <h2 class="card-title">Veículos</h2>
                     <h3 class="card-text">
-                        <select class="form-select mt-4" name="" id="">
-                            <option value="">Mustang</option>
-                            <option value="">Ranger</option>
-                            <option value="">Territory</option>
-                            <option value="">Bronco Sport</option>
-                        </select>
+                        <!-- @if(vehicles[0]) {
+                            <select class="form-select mt-4" name="" id="">
+                                @for (vehicle of vehicles; track vehicle.id) {
+                                    <option value="{{ vehicle.id }}">{{ vehicle.vehicle }}</option>
+                                }
+                            </select>
+                        } -->
                     </h3>
                 </div>
             </div>
         </div>
-        <app-card [title]="'Total de Vendas'" class="col-12 col-sm-6 col-lg-3"/>
-        <app-card [title]="'Conectados'" class="col-12 col-sm-6 col-lg-3"/>
-        <app-card [title]="'Update Software'" class="col-12 col-sm-6 col-lg-3"/>
+        <app-card [title]="'Total de Vendas'" [value]="selectedVehicle?.volumetotal" class="col-12 col-sm-6 col-lg-3"/>
+        <app-card [title]="'Conectados'" [value]="selectedVehicle?.connected" class="col-12 col-sm-6 col-lg-3"/>
+        <app-card [title]="'Update Software'" [value]="selectedVehicle?.softwareUpdates" class="col-12 col-sm-6 col-lg-3"/>
     </section>
     <section class="d-flex mt-5 w-100 align-items-center">
         <div class="w-100"><img class="w-100" src="http://localhost:3001/mustang.png" alt=""></div>
@@ -41,23 +42,23 @@
                 <tbody class="w-100 justify-content-between">
                     <tr>
                         <th class="text-start fs-3">ODÔMETRO</th>
-                        <td class="text-end fs-3">{{ vinInfos?.odometro }}Km</td>
+                        <td class="text-end fs-3">@if(vinInfos) { {{ vinInfos.odometro }}}Km</td>
                     </tr>
                     <tr>
                         <th class="text-start fs-3">COMBUSTÍVEL</th>
-                        <td class="text-end fs-3">{{ vinInfos?.nivelCombustivel }}%</td>
+                        <td class="text-end fs-3">@if(vinInfos) { {{ vinInfos.nivelCombustivel }} }%</td>
                     </tr>
                     <tr>
                         <th class="text-start fs-3">STATUS</th>
-                        <td class="text-end fs-3">{{ vinInfos?.status }}</td>
+                        <td class="text-end fs-3">@if(vinInfos) { {{ vinInfos.status.toUpperCase() }} }</td>
                     </tr>
                     <tr>
                         <th class="text-start fs-3">LAT</th>
-                        <td class="text-end fs-3">{{ vinInfos?.lat }}</td>
+                        <td class="text-end fs-3">@if(vinInfos) { {{ vinInfos.lat }} }</td>
                     </tr>
                     <tr>
                         <th class="text-start fs-3">LONG</th>
-                        <td class="text-end fs-3">{{ vinInfos?.long }}</td>
+                        <td class="text-end fs-3">@if(vinInfos) { {{ vinInfos.long }} }</td>
                     </tr>
                 </tbody>
             </table>

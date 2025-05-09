@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
 
   vinInfos: VinInfos | null = null
   vehicles: Vehicle[] = []
+  selectedVehicle: Vehicle | undefined = undefined
 
   dashboardService = inject(DashboardService)
 
@@ -25,12 +26,21 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const response = this.dashboardService.getVehicles()
-    response.subscribe(
-      (vehicle) => {
-        this.vehicles = vehicle
-      }
-    )
+    this.dashboardService.getVehicles()
+      .subscribe(
+        (vehicles) => {
+          this.vehicles = vehicles
+          this.selectedVehicle = vehicles[0]
+
+
+          this.dashboardService.getVinInfos(this.selectedVehicle.vin)
+            .subscribe(
+              (vinInfos) => {
+                this.vinInfos = vinInfos
+              }
+            )
+        }
+      )
   }
 
   showVinInfos() {
