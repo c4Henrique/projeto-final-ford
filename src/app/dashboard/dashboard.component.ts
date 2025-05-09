@@ -15,9 +15,9 @@ export class DashboardComponent implements OnInit {
   inputVin = ""
   isEditingVin = signal(false)
 
-  vinInfos: VinInfos | null = null
+  vinInfos: VinInfos = { id: -1, odometro: 0, nivelCombustivel: 0, status: "", lat: 0, long: 0 }
+  selectedVehicle: Vehicle = { id: -1, connected: 0, img: "", softwareUpdates: 0, vehicle: "", vin: "", volumetotal: 0 }
   vehicles: Vehicle[] = []
-  selectedVehicle: Vehicle | undefined = undefined
 
   dashboardService = inject(DashboardService)
 
@@ -30,9 +30,10 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         (vehicles) => {
           this.vehicles = vehicles
+          this.vehicles = Object.values(vehicles) as Vehicle[];
+
           this.selectedVehicle = vehicles[0]
-
-
+          
           this.dashboardService.getVinInfos(this.selectedVehicle.vin)
             .subscribe(
               (vinInfos) => {
@@ -47,13 +48,27 @@ export class DashboardComponent implements OnInit {
     this.vin = this.inputVin
     this.editVin()
 
-    const response = this.dashboardService.getVinInfos(this.vin)
-    response.subscribe(
-      (vinInfos) => {
-        this.vinInfos = vinInfos
-      }
-    )
+    this.dashboardService.getVinInfos(this.vin)
+      .subscribe(
+        (vinInfos) => {
+          this.vinInfos = vinInfos
+        }
+      )
 
     this.inputVin = ""
+  }
+
+  onSelectCar(event: Event) {
+    const id = Number((event.target as HTMLSelectElement).value)
+    const selectedVehicle = this.vehicles.find(vehicle => vehicle.id === id)
+    
+    if(selectedVehicle) this.selectedVehicle = selectedVehicle
+
+    this.dashboardService.getVinInfos(this.selectedVehicle.vin)
+      .subscribe(
+        (vinInfos) => {
+          this.vinInfos = vinInfos
+        }
+      )
   }
 }

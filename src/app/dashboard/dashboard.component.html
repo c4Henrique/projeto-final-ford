@@ -10,23 +10,23 @@
                 <div class="custom-card-body card-body d-flex flex-column">
                     <h2 class="card-title">Veículos</h2>
                     <h3 class="card-text">
-                        <!-- @if(vehicles[0]) {
-                            <select class="form-select mt-4" name="" id="">
-                                @for (vehicle of vehicles; track vehicle.id) {
-                                    <option value="{{ vehicle.id }}">{{ vehicle.vehicle }}</option>
+                        <select class="form-select mt-4" (change)="onSelectCar($event)">
+                            @if(vehicles) {
+                                @for (v of vehicles; track v.id) {
+                                    <option value="{{ v.id }}">{{ v.vehicle }}</option>
                                 }
-                            </select>
-                        } -->
+                            }
+                        </select>
                     </h3>
                 </div>
             </div>
         </div>
-        <app-card [title]="'Total de Vendas'" [value]="selectedVehicle?.volumetotal" class="col-12 col-sm-6 col-lg-3"/>
-        <app-card [title]="'Conectados'" [value]="selectedVehicle?.connected" class="col-12 col-sm-6 col-lg-3"/>
-        <app-card [title]="'Update Software'" [value]="selectedVehicle?.softwareUpdates" class="col-12 col-sm-6 col-lg-3"/>
+        <app-card [title]="'Total de Vendas'" [value]="selectedVehicle.volumetotal" class="col-12 col-sm-6 col-lg-3"/>
+        <app-card [title]="'Conectados'" [value]="selectedVehicle.connected" class="col-12 col-sm-6 col-lg-3"/>
+        <app-card [title]="'Update Software'" [value]="selectedVehicle.softwareUpdates" class="col-12 col-sm-6 col-lg-3"/>
     </section>
     <section class="d-flex mt-5 w-100 align-items-center">
-        <div class="w-100"><img class="w-100" src="http://localhost:3001/mustang.png" alt=""></div>
+        <div class="w-100"><img class="w-100" src="{{ selectedVehicle.img }}" alt=""></div>
         <div class="shadow p-5 rounded-4 w-50 d-flex flex-column align-items-center">
             <div class="d-flex">
                 <div class="mb-4 d-flex gap-4 w-100 align-items-center justify-content-center">
