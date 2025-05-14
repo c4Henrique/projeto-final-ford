@@ -1,19 +1,23 @@
-<button class="btn btn-white position-fixed" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
-    <img src="/svg/burger.svg" alt="">
+<!-- Botão estilo hamburguer, fixo no canto superior esquerdo -->
+<button class="menu-toggle" type="button" (click)="menuOpen = !menuOpen">
+  <img src="/svg/burger.svg" alt="Abrir Menu" />
 </button>
-  
-<div class="offcanvas offcanvas-start p-2" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel" style="width: 200px;">
-    <div class="offcanvas-header d-flex w-100 justify-content-center align-items-center">
-      <div class="w-75"><img class="w-100" src="https://prodb2cuicontentdelivery-d0bbevfjaxfmedda.z01.azurefd.net/b2cui/assets/images/ford-logo.svg" alt=""></div>
-    </div>
-    <div class="offcanvas-body">
-        <ul class="mt-5 p-0 d-flex flex-column align-items-center">
-            <div class="menu-item w-25 mb-4 d-flex align-items-center">
-                <a href="/home"><img class="w-100 h-100" src="/svg/home.svg" alt=""></a>
-            </div>
-            <div class="menu-item w-25 mb-4 d-flex align-items-center">
-                <a href="/dashboard"><img class="w-100 h-100" src="/svg/dashboard.svg" alt=""></a>
-            </div>
-        </ul>
-    </div>
-</div>
+
+<!-- Menu lateral customizado -->
+<nav class="custom-sidebar" [class.open]="menuOpen">
+  <div class="sidebar-header">
+    <img src="https://prodb2cuicontentdelivery-d0bbevfjaxfmedda.z01.azurefd.net/b2cui/assets/images/ford-logo.svg" alt="Ford Logo" />
+  </div>
+  <ul class="sidebar-nav">
+    <li class="nav-item">
+      <a routerLink="/home" routerLinkActive="active">
+        <img src="/svg/home.svg" alt="Home" />
+      </a>
+    </li>
+    <li class="nav-item">
+      <a routerLink="/dashboard" routerLinkActive="active">
+        <img src="/svg/dashboard.svg" alt="Dashboard" />
+      </a>
+    </li>
+  </ul>
+</nav>

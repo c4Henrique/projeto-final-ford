@@ -2,47 +2,81 @@ import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../service/auth.service';
 import { Router } from '@angular/router';
+import { TranslateService, Language } from '../../service/translate.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login-form',
-  imports: [ReactiveFormsModule],
+  standalone: true,
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './login-form.component.html',
-  styleUrl: './login-form.component.scss'
+  styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent {
-  private authService = inject(AuthService)
-  private router = inject(Router)
+  private authService = inject(AuthService);
+  private router = inject(Router);
+  private translateService = inject(TranslateService);
 
   loginForm = new FormGroup({
     username: new FormControl(""),
     password: new FormControl("")
-  })
+  });
 
-  authorized = signal(false)
-  errorMessage = signal("")
+  authorized = signal(false);
+  errorMessageSignal = signal("");
+  isLanguageMenuOpen = signal(false);
+  currentLang: Language = 'pt';
+  languages = this.translateService.getLanguages();
 
+  constructor() {
+    this.translateService.getCurrentLang().subscribe(lang => {
+      this.currentLang = lang;
+    });
+  }
+
+  // getter para usar no template
+  get errorMessage() {
+    return this.errorMessageSignal();
+  }
+
+  translate(key: string): string {
+    return this.translateService.translate(key);
+  }
+
+  getCurrentLanguageInfo() {
+    return this.languages.find(lang => lang.code === this.currentLang) || this.languages[0];
+  }
+
+  toggleLanguageMenu() {
+    this.isLanguageMenuOpen.set(!this.isLanguageMenuOpen());
+  }
+
+  changeLanguage(langCode: string) {
+    this.translateService.setLanguage(langCode as Language);
+    this.isLanguageMenuOpen.set(false);
+  }
 
   onSubmitLoginForm() {
-    const { username, password } = this.loginForm.value
+    const { username, password } = this.loginForm.value;
 
-    if(!this.loginForm.valid || !username || !password) {
-      this.errorMessage = signal("Existem campos não preenchidos!")
-      return
+    if (!this.loginForm.valid || !username || !password) {
+      this.errorMessageSignal.set(this.translate('login.error.empty'));
+      return;
     }
 
     this.authService.auth(username, password).subscribe({
       next: () => {
-        this.errorMessage = signal("")
-        this.router.navigate(["/home"])
+        this.errorMessageSignal.set("");
+        this.router.navigate(["/home"]);
       },
       error: (err) => {
-        if(err.status === 401) {
-          this.errorMessage = signal("Os dados de usuário ou senha são inválidos!")
-          return
+        if (err.status === 401) {
+          this.errorMessageSignal.set(this.translate('login.error.invalid'));
+          return;
         }
 
-        this.errorMessage = signal("Erro interno. Tente novamente mais tarde!")
+        this.errorMessageSignal.set(this.translate('login.error.internal'));
       }
-    })
+    });
   }
 }

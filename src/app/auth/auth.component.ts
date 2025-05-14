@@ -3,10 +3,9 @@ import { LoginFormComponent } from '../components/login-form/login-form.componen
 
 @Component({
   selector: 'app-auth',
+  standalone: true,
   imports: [LoginFormComponent],
   templateUrl: './auth.component.html',
   styleUrl: './auth.component.scss'
 })
-export class AuthComponent {
-  
-}
+export class AuthComponent {}

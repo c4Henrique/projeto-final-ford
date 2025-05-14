@@ -18,7 +18,7 @@ export const routes: Routes = [
     }
   },
   {
-    path: 'dashboard',
+    path: 'vehicle',
     pathMatch: 'full',
     canActivate: [authGuard],
     loadComponent: () => {

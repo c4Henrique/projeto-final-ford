@@ -16,20 +16,23 @@ export class DashboardComponent implements OnInit {
   vin = "1NXBR12E11Z543327"
   inputVin = ""
   isEditingVin = signal(false)
+  isDarkMode = signal(false)
 
   vinInfos: VinInfos = { id: -1, odometro: 0, nivelCombustivel: 0, status: "", lat: 0, long: 0 }
   selectedVehicle: Vehicle = { id: -1, connected: 0, img: "", softwareUpdates: 0, vehicle: "", vin: "", volumetotal: 0 }
   vehicles: Vehicle[] = []
 
   dashboardService = inject(DashboardService)
-
   router = inject(Router)
 
-  editVin() {
-    this.isEditingVin.set(!this.isEditingVin());
-  }
-
   ngOnInit(): void {
+    // Recupera a preferência de tema salva
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+      this.isDarkMode.set(true);
+      document.body.classList.add('dark-theme');
+    }
+
     this.dashboardService.getVehicles()
       .subscribe(
         (vehicles) => {
@@ -46,6 +49,18 @@ export class DashboardComponent implements OnInit {
             )
         }
       )
+  }
+
+  toggleTheme() {
+    const newThemeValue = !this.isDarkMode();
+    this.isDarkMode.set(newThemeValue);
+    document.body.classList.toggle('dark-theme');
+    // Salva a preferência do tema
+    localStorage.setItem('theme', newThemeValue ? 'dark' : 'light');
+  }
+
+  editVin() {
+    this.isEditingVin.set(!this.isEditingVin());
   }
 
   showVinInfos() {
