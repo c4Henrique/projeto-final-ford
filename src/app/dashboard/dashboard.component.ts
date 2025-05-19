@@ -3,12 +3,12 @@ import { CardComponent } from '../components/card/card.component';
 import { FormsModule } from '@angular/forms';
 import { DashboardService } from '../service/dashboard.service';
 import { Vehicle, VinInfos } from '../model/dashboard';
-import { MenuComponent } from '../components/menu/menu.component';
-import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CardComponent, FormsModule, MenuComponent],
+  standalone: true,
+  imports: [CardComponent, FormsModule, CommonModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -23,7 +23,6 @@ export class DashboardComponent implements OnInit {
   vehicles: Vehicle[] = []
 
   dashboardService = inject(DashboardService)
-  router = inject(Router)
 
   ngOnInit(): void {
     // Recupera a preferência de tema salva
@@ -96,7 +95,6 @@ export class DashboardComponent implements OnInit {
       .subscribe(
         (vinInfos) => {
           this.vinInfos = vinInfos
-          
         }
       )
   }

@@ -183,3 +183,115 @@ main {
   font-size: 1.5rem;
   margin-right: 8px;
 }
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+}
+
+.login-card {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+
+  .logo {
+    text-align: center;
+    margin-bottom: 30px;
+
+    .ford-logo {
+      max-width: 150px;
+      height: auto;
+    }
+  }
+
+  h2 {
+    text-align: center;
+    color: #002244;
+    margin-bottom: 30px;
+    font-size: 24px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: 500;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #002244;
+      }
+    }
+
+    &.checkbox {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+      }
+
+      label {
+        margin: 0;
+      }
+    }
+  }
+
+  .btn-login {
+    width: 100%;
+    padding: 12px;
+    background-color: #002244;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #003366;
+    }
+
+    &:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+  }
+
+  .messages {
+    margin-top: 20px;
+    text-align: center;
+
+    .error {
+      color: #dc3545;
+      font-size: 14px;
+    }
+
+    .success {
+      color: #28a745;
+      font-size: 14px;
+    }
+  }
+}

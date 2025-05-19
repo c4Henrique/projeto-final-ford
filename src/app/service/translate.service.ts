@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-export type Language = 'pt' | 'en' | 'es' | 'fr' | 'zh' | 'ar';
+export type Language = 'pt' | 'en';
 
 interface Translations {
   [key: string]: {
@@ -13,153 +13,160 @@ interface Translations {
   providedIn: 'root'
 })
 export class TranslateService {
-  private currentLang = new BehaviorSubject<Language>('pt');
-  
   private translations: Translations = {
-    'login.title': {
-      'pt': 'Bem-vindo',
-      'en': 'Welcome',
-      'es': 'Bienvenido',
-      'fr': 'Bienvenue',
-      'zh': '欢迎',
-      'ar': 'مرحباً'
+    pt: {
+      'login.title': 'Login',
+      'login.username': 'Usuário',
+      'login.password': 'Senha',
+      'login.submit': 'Entrar',
+      'login.error': 'Usuário ou senha inválidos',
+      'login.error.empty': 'Por favor, preencha todos os campos.',
+      'login.error.invalid': 'Usuário ou senha inválidos.',
+      'login.error.internal': 'Erro interno. Tente novamente mais tarde.',
+      'login.error.lgpd': 'Você precisa aceitar os termos de privacidade para continuar.',
+      'login.lgpd.accept': 'Eu aceito os termos de privacidade e proteção de dados.',
+      'login.lgpd.learn_more': 'Saiba mais',
+      'login.lgpd.title': 'Política de Privacidade e Proteção de Dados',
+      'login.lgpd.description': 'A Ford está comprometida com a proteção de seus dados pessoais em conformidade com a Lei Geral de Proteção de Dados (LGPD).',
+      'login.lgpd.rights': 'Você tem os seguintes direitos:',
+      'login.lgpd.rights.access': 'Acesso aos seus dados pessoais',
+      'login.lgpd.rights.correction': 'Correção de dados incompletos ou desatualizados',
+      'login.lgpd.rights.deletion': 'Exclusão de dados pessoais',
+      'login.lgpd.rights.portability': 'Portabilidade dos dados',
+      'login.lgpd.rights.restriction': 'Restrição do processamento',
+      'login.lgpd.rights.objection': 'Oposição ao processamento',
+      'login.lgpd.contact': 'Para exercer seus direitos, entre em contato com nosso DPO:',
+      'login.lgpd.email': 'dpo@ford.com',
+      'user.welcome': 'Bem-vindo',
+      'user.profile': 'Perfil',
+      'user.settings': 'Configurações',
+      'user.logout': 'Sair',
+      'profile.title': 'Perfil do Usuário',
+      'profile.personal_info': 'Informações Pessoais',
+      'profile.name': 'Nome',
+      'profile.security': 'Segurança',
+      'profile.password': 'Senha',
+      'profile.change_password': 'Alterar Senha',
+      'settings.title': 'Configurações',
+      'settings.appearance': 'Aparência',
+      'settings.theme': 'Tema',
+      'settings.theme_description': 'Escolha entre o tema claro ou escuro',
+      'settings.light_theme': 'Claro',
+      'settings.dark_theme': 'Escuro',
+      'settings.language': 'Idioma',
+      'settings.select_language': 'Selecione o idioma',
+      'settings.language_description': 'Escolha o idioma da interface',
+      'settings.portuguese': 'Português',
+      'settings.english': 'English',
+      'calculator.title': 'Calculadora de Consumo',
+      'calculator.description': 'Calcule o custo da sua viagem com base na distância, consumo e preço do combustível.',
+      'calculator.distance': 'Distância',
+      'calculator.consumption': 'Consumo',
+      'calculator.price': 'Preço do Combustível',
+      'calculator.result': 'Custo Total',
+      'calculator.result_description': 'Valor total gasto com combustível para a viagem',
+      'home.title': 'Bem-vindo ao Sistema Ford',
+      'home.description': 'Gerencie sua frota de veículos, acompanhe o consumo de combustível e calcule custos de forma simples e eficiente.',
+      'home.calculator': 'Calculadora de Consumo',
+      'home.dashboard': 'Dashboard',
+      'home.features.vehicles.title': 'Gestão de Veículos',
+      'home.features.vehicles.description': 'Cadastre e gerencie sua frota de veículos com facilidade.',
+      'home.features.analytics.title': 'Análises Detalhadas',
+      'home.features.analytics.description': 'Acompanhe o desempenho e consumo dos seus veículos com gráficos e relatórios.',
+      'home.features.calculator.title': 'Calculadora de Custos',
+      'home.features.calculator.description': 'Calcule o custo das suas viagens com base no consumo e preço do combustível.',
     },
-    'login.email': {
-      'pt': 'E-mail',
-      'en': 'Email',
-      'es': 'Correo electrónico',
-      'fr': 'E-mail',
-      'zh': '电子邮件',
-      'ar': 'البريد الإلكتروني'
-    },
-    'login.password': {
-      'pt': 'Senha',
-      'en': 'Password',
-      'es': 'Contraseña',
-      'fr': 'Mot de passe',
-      'zh': '密码',
-      'ar': 'كلمة المرور'
-    },
-    'login.button': {
-      'pt': 'Entrar',
-      'en': 'Sign In',
-      'es': 'Iniciar sesión',
-      'fr': 'Se connecter',
-      'zh': '登录',
-      'ar': 'تسجيل الدخول'
-    },
-    'login.remember': {
-      'pt': 'Lembrar-me',
-      'en': 'Remember me',
-      'es': 'Recordarme',
-      'fr': 'Se souvenir de moi',
-      'zh': '记住我',
-      'ar': 'تذكرني'
-    },
-    'welcome.title': {
-      'pt': 'Bem-vindo ao Futuro da Mobilidade',
-      'en': 'Welcome to the Future of Mobility',
-      'es': 'Bienvenido al Futuro de la Movilidad',
-      'fr': 'Bienvenue dans le Futur de la Mobilité',
-      'zh': '欢迎来到移动出行的未来',
-      'ar': 'مرحباً بكم في مستقبل التنقل'
-    },
-    'welcome.description': {
-      'pt': 'Explore o universo Ford através de nossa plataforma inovadora de gestão e monitoramento. Aqui você encontrará:',
-      'en': 'Explore the Ford universe through our innovative management and monitoring platform. Here you will find:',
-      'es': 'Explora el universo Ford a través de nuestra innovadora plataforma de gestión y monitoreo. Aquí encontrarás:',
-      'fr': 'Explorez l\'univers Ford à travers notre plateforme innovante de gestion et de surveillance. Vous trouverez ici:',
-      'zh': '通过我们创新的管理和监控平台探索福特世界。在这里您将找到：',
-      'ar': 'اكتشف عالم فورد من خلال منصتنا المبتكرة للإدارة والمراقبة. ستجد هنا:'
-    },
-    'welcome.feature.realtime': {
-      'pt': 'Informações em tempo real dos veículos',
-      'en': 'Real-time vehicle information',
-      'es': 'Información de vehículos en tiempo real',
-      'fr': 'Informations des véhicules en temps réel',
-      'zh': '实时车辆信息',
-      'ar': 'معلومات المركبات في الوقت الفعلي'
-    },
-    'welcome.feature.analytics': {
-      'pt': 'Análises detalhadas de desempenho',
-      'en': 'Detailed performance analytics',
-      'es': 'Análisis detallado del rendimiento',
-      'fr': 'Analyses détaillées des performances',
-      'zh': '详细的性能分析',
-      'ar': 'تحليلات الأداء المفصلة'
-    },
-    'welcome.feature.maintenance': {
-      'pt': 'Status de manutenção e atualizações',
-      'en': 'Maintenance status and updates',
-      'es': 'Estado de mantenimiento y actualizaciones',
-      'fr': 'État de maintenance et mises à jour',
-      'zh': '维护状态和更新',
-      'ar': 'حالة الصيانة والتحديثات'
-    },
-    'welcome.feature.location': {
-      'pt': 'Localização e rastreamento',
-      'en': 'Location and tracking',
-      'es': 'Localización y seguimiento',
-      'fr': 'Localisation et suivi',
-      'zh': '位置和跟踪',
-      'ar': 'الموقع والتتبع'
-    },
-    'welcome.highlight': {
-      'pt': 'Sua jornada para uma experiência automotiva mais inteligente começa aqui.',
-      'en': 'Your journey to a smarter automotive experience starts here.',
-      'es': 'Tu viaje hacia una experiencia automotriz más inteligente comienza aquí.',
-      'fr': 'Votre voyage vers une expérience automobile plus intelligente commence ici.',
-      'zh': '您的智能汽车体验之旅从这里开始。',
-      'ar': 'تبدأ رحلتك نحو تجربة سيارات أكثر ذكاءً من هنا.'
-    },
-    'welcome.button': {
-      'pt': 'Acessar Dashboard',
-      'en': 'Access Dashboard',
-      'es': 'Acceder al Panel',
-      'fr': 'Accéder au Tableau de Bord',
-      'zh': '访问仪表板',
-      'ar': 'الوصول إلى لوحة التحكم'
+    en: {
+      'login.title': 'Login',
+      'login.username': 'Username',
+      'login.password': 'Password',
+      'login.submit': 'Sign In',
+      'login.error': 'Invalid username or password',
+      'login.error.empty': 'Please fill in all fields.',
+      'login.error.invalid': 'Invalid username or password.',
+      'login.error.internal': 'Internal error. Please try again later.',
+      'login.error.lgpd': 'You must accept the privacy terms to continue.',
+      'login.lgpd.accept': 'I accept the privacy and data protection terms.',
+      'login.lgpd.learn_more': 'Learn more',
+      'login.lgpd.title': 'Privacy and Data Protection Policy',
+      'login.lgpd.description': 'Ford is committed to protecting your personal data in accordance with the General Data Protection Law (LGPD).',
+      'login.lgpd.rights': 'You have the following rights:',
+      'login.lgpd.rights.access': 'Access to your personal data',
+      'login.lgpd.rights.correction': 'Correction of incomplete or outdated data',
+      'login.lgpd.rights.deletion': 'Deletion of personal data',
+      'login.lgpd.rights.portability': 'Data portability',
+      'login.lgpd.rights.restriction': 'Restriction of processing',
+      'login.lgpd.rights.objection': 'Objection to processing',
+      'login.lgpd.contact': 'To exercise your rights, contact our DPO:',
+      'login.lgpd.email': 'dpo@ford.com',
+      'user.welcome': 'Welcome',
+      'user.profile': 'Profile',
+      'user.settings': 'Settings',
+      'user.logout': 'Logout',
+      'profile.title': 'User Profile',
+      'profile.personal_info': 'Personal Information',
+      'profile.name': 'Name',
+      'profile.security': 'Security',
+      'profile.password': 'Password',
+      'profile.change_password': 'Change Password',
+      'settings.title': 'Settings',
+      'settings.appearance': 'Appearance',
+      'settings.theme': 'Theme',
+      'settings.theme_description': 'Choose between light or dark theme',
+      'settings.light_theme': 'Light',
+      'settings.dark_theme': 'Dark',
+      'settings.language': 'Language',
+      'settings.select_language': 'Select language',
+      'settings.language_description': 'Choose the interface language',
+      'settings.portuguese': 'Portuguese',
+      'settings.english': 'English',
+      'calculator.title': 'Fuel Consumption Calculator',
+      'calculator.description': 'Calculate your trip cost based on distance, consumption and fuel price.',
+      'calculator.distance': 'Distance',
+      'calculator.consumption': 'Consumption',
+      'calculator.price': 'Fuel Price',
+      'calculator.result': 'Total Cost',
+      'calculator.result_description': 'Total amount spent on fuel for the trip',
+      'home.title': 'Welcome to Ford System',
+      'home.description': 'Manage your vehicle fleet, track fuel consumption and calculate costs in a simple and efficient way.',
+      'home.calculator': 'Consumption Calculator',
+      'home.dashboard': 'Dashboard',
+      'home.features.vehicles.title': 'Vehicle Management',
+      'home.features.vehicles.description': 'Register and manage your vehicle fleet with ease.',
+      'home.features.analytics.title': 'Detailed Analytics',
+      'home.features.analytics.description': 'Track your vehicles performance and consumption with graphs and reports.',
+      'home.features.calculator.title': 'Cost Calculator',
+      'home.features.calculator.description': 'Calculate your trip costs based on consumption and fuel price.',
     }
   };
 
+  private currentLang$ = new BehaviorSubject<Language>('pt');
+
   constructor() {
-    // Carrega o idioma salvo ou usa o padrão do navegador
     const savedLang = localStorage.getItem('language') as Language;
-    if (savedLang) {
-      this.currentLang.next(savedLang);
-    } else {
-      const browserLang = navigator.language.split('-')[0] as Language;
-      this.setLanguage(this.isValidLanguage(browserLang) ? browserLang : 'pt');
+    if (savedLang && (savedLang === 'pt' || savedLang === 'en')) {
+      this.setLanguage(savedLang);
     }
   }
 
-  private isValidLanguage(lang: string): lang is Language {
-    return ['pt', 'en', 'es', 'fr', 'zh', 'ar'].includes(lang);
+  getCurrentLang() {
+    return this.currentLang$.asObservable();
   }
 
   setLanguage(lang: Language) {
-    this.currentLang.next(lang);
+    this.currentLang$.next(lang);
     localStorage.setItem('language', lang);
-    // Se for árabe, ajusta a direção do texto
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-  }
-
-  getCurrentLang() {
-    return this.currentLang.asObservable();
   }
 
   translate(key: string): string {
-    return this.translations[key]?.[this.currentLang.value] || key;
+    const lang = this.currentLang$.value;
+    return this.translations[lang]?.[key] || key;
   }
 
   getLanguages() {
     return [
-      { code: 'pt', name: 'Português', flag: '🇧🇷' },
-      { code: 'en', name: 'English', flag: '🇺🇸' },
-      { code: 'es', name: 'Español', flag: '🇪🇸' },
-      { code: 'fr', name: 'Français', flag: '🇫🇷' },
-      { code: 'zh', name: '中文', flag: '🇨🇳' },
-      { code: 'ar', name: 'العربية', flag: '🇸🇦' }
+      { code: 'pt', name: 'Português' },
+      { code: 'en', name: 'English' }
     ];
   }
 } 
